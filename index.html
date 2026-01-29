@@ -19,17 +19,17 @@
     window.onload = function() {
     // 1. Memunculkan prompt (pop-up input)
     let namaWartawan = prompt("Masukkan nama wartawan:", "NamaWartawan");
-    let namaPria = prompt("Masukkan nama pengantin pria:", "Namapengantinpria");
-    let namaWanita = prompt("Masukkan nama pengantin wanita:", "Namapengantinwanita");  
+    let namaPria = prompt("Masukkan nama pengantin pria:", "namaPria");
+    let namaWanita = prompt("Masukkan nama pengantin wanita:", "namaWanita");  
     let tempat = prompt("Masukkan tempat acara:", "Lokasi");
     let waktu = prompt("Masukkan waktu acara:", "Jam/Tanggal");
 
     // 2. Memastikan input tidak kosong (opsional)
     if (namaWartawan && namaPria && namaWanita && tempat && waktu) {
         // 3. Mengubah variabel pada halaman HTML
-        document.getElementById("nama wartawan").innerHTML = namaWartawan;
-        document.getElementById("nama pria").innerHTML = namaPria;
-        document.getElementById("nama wanita").innerHTML = namaWanita;
+        document.getElementById("NamaWartawan").innerHTML = namaWartawan;
+        document.getElementById("namaPria").innerHTML = namaPria;
+        document.getElementById("namaWanita").innerHTML = namaWanita;
         document.getElementById("tempat").innerHTML = tempat;
         document.getElementById("waktu").innerHTML = waktu;
     } else {
