@@ -1,42 +1,117 @@
 <html>
-  <head>
-    <title>Ini latihan DSR-WD 1</title>
-  </head>
-  <style>
-    h4 {
-      color: red;
-      background-color: yellow;
-      font-size: 30px;
-    }
-  </style>
-  <body>
-    <h4>Ini berita pertama saya, <span id="namaWartawan" class="highlight">...</span></h4>
-    <p style="color: red; font-size: 16px; background-color: yellow; text-align: left;">Musisi <span id="namaPria" class="highlight">...</span> baru saja melamar kekasihnya, <span id="namaWanita" class="highlight">...</span>, di <span id="tempat" class="highlight">...</span>, <span id="waktu" class="highlight">...</span>.</p>
-    <marquee><p style="color: white; font-size: 16px; background-color: green; text-align: left;">Salah satu dari tiga anak musisi Ahmad Dhani ini tampil gagah menggunakan beskap bernuansa soft terracotta karya Studio Boh, dalam acara pertunangan yang dihadiri oleh keluarga besar dari masing-masing pihak.</p></marquee>
-    <p style="color: yellow; font-size: 16px; background-color: red; text-align: left;">Adapun beskap yang digunakan oleh El memiliki potongan yang agak longgar, berbeda dengan beskap pada umumnya yang memiliki potongan fit body.</p>
-  
-  <script>
-    window.onload = function() {
-    // 1. Memunculkan prompt (pop-up input)
-    let namaWartawan = prompt("Masukkan nama wartawan:", "NamaWartawan");
-    let namaPria = prompt("Masukkan nama pengantin pria:", "namaPria");
-    let namaWanita = prompt("Masukkan nama pengantin wanita:", "namaWanita");  
-    let tempat = prompt("Masukkan tempat acara:", "tempat");
-    let waktu = prompt("Masukkan waktu acara:", "Jam/Tanggal");
+<head>
+    <title>Berita Lamaran Pernikahan</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; }
+        h4 { color: blue; }
+        h3 { color: purple; }
+        .highlight { font-weight: bold; color: #2c3e50; }
 
-    // 2. Memastikan input tidak kosong (opsional)
-    if (namaWartawan && namaPria && namaWanita && tempat && waktu) {
-        // 3. Mengubah variabel pada halaman HTML
-        document.getElementById("NamaWartawan").innerHTML = namaWartawan;
-        document.getElementById("namaPria").innerHTML = namaPria;
-        document.getElementById("namaWanita").innerHTML = namaWanita;
-        document.getElementById("tempat").innerHTML = tempat;
-        document.getElementById("waktu").innerHTML = waktu;
-    } else {
-        alert("Mohon isi semua data!");
-    }
-    };
-  </script>
-  </body>
-  
+        /* Style untuk Modal Pop-up */
+        #modalOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center;
+            z-index: 1000;
+        }
+        .modal-box {
+            background: white; padding: 25px; border-radius: 12px; width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .modal-box h2 { margin-top: 0; font-size: 1.2rem; color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .input-group { margin-bottom: 12px; }
+        .input-group label { display: block; font-size: 0.8rem; font-weight: bold; color: #666; margin-bottom: 4px; }
+        .input-group input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        
+        button {
+            width: 100%; padding: 10px; background: #6c5ce7; color: white;
+            border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1rem;
+        }
+        button:hover { background: #5849c4; }
+    </style>
+</head>
+
+<body>
+    <div id="modalOverlay">
+        <div class="modal-box">
+            <h2>Input Berita Lamaran Pernikahan</h2>
+            <div class="input-group">
+                <label>Nama Wartawan</label>
+                <input type="text" id="inWartawan" placeholder="Nama Wartawan">
+            </div>
+			<div class="input-group">
+                <label>Nama Pengantin Pria</label>
+                <input type="text" id="inPria" placeholder="ElRumi">
+            </div>
+            <div class="input-group">
+                <label>Nama Pengantin Wanita</label>
+                <input type="text" id="inWanita" placeholder="Syifa Hadju">
+            </div>
+            <div class="input-group">
+                <label>Nama Ayah</label>
+                <input type="text" id="inAyah" placeholder="Ayah">
+            </div>
+            <div class="input-group">
+                <label>Nama Ibu</label>
+                <input type="text" id="inIbu" placeholder="Ibu">
+            </div>
+            <div class="input-group">
+                <label>Nama Tempat Acara</label>
+                <input type="text" id="inTempat" placeholder="Hutan Kota Plataran">
+            </div>
+            <div class="input-group">
+                <label>Hari & Tanggal</label>
+                <input type="text" id="inWaktu" placeholder="Rabu, 21 Januari 2026">
+            </div>
+            <button onclick="updateData()">OK</button>
+        </div>
+    </div>
+
+    <h4>Ini berita pertama saya, <span id="inWartawan" class="highlight">wartawan</span></h4>
+    <br>
+    <h3>Informasi Lamaran</h3>
+    <br>
+    <p>
+        <span id="pria1" class="highlight">ElRumi</span> dan 
+        <span id="wanita" class="highlight">Syifa Hadju</span> menggelar lamaran hari ini, 
+        <span id="waktu" class="highlight">Rabu, 21 Januari 2026 di Jakarta</span>. 
+        Acara bahagia itu dihadiri oleh seluruh keluarga besar 
+        <span id="pria2" class="highlight">ElRumi</span> yang semuanya kompak memakai baju warna kuning.
+    </p>
+    <p> 
+        <span id="ayah" class="highlight">Ayah</span> dan 
+        <span id="ibu" class="highlight">Ibu</span> mendampingi 
+        <span id="pria3" class="highlight">ElRumi</span> dalam acara lamaran keluarga ini. 
+        Momen lamaran digelar di 
+        <span id="tempat" class="highlight">Hutan Kota Plataran Jakarta Pusat</span>.
+    </p>
+
+    <script>
+        function updateData() {
+            // Ambil nilai dari input modal
+            const wartawan = document.getElementById("inWartawan").value;
+			const pria = document.getElementById("inPria").value;
+            const wanita = document.getElementById("inWanita").value;
+            const ayah = document.getElementById("inAyah").value;
+            const ibu = document.getElementById("inIbu").value;
+            const tempat = document.getElementById("inTempat").value;
+            const waktu = document.getElementById("inWaktu").value;
+
+            // Ganti teks di halaman jika input tidak kosong
+            if(wartawan) document.getElementById("inWartawan").innerText = wartawan;
+			if(pria) {
+                document.getElementById("pria1").innerText = pria;
+                document.getElementById("pria2").innerText = pria;
+                document.getElementById("pria3").innerText = pria;
+            }
+            if(wanita) document.getElementById("wanita").innerText = wanita;
+            if(ayah)   document.getElementById("ayah").innerText = ayah;
+            if(ibu)    document.getElementById("ibu").innerText = ibu;
+            if(tempat) document.getElementById("tempat").innerText = tempat;
+            if(waktu)  document.getElementById("waktu").innerText = waktu;
+
+            // Sembunyikan modal
+            document.getElementById("modalOverlay").style.display = "none";
+        }
+    </script>
+</body>
 </html>
