@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Berita Lamaran Pernikahan</title>
+    <title>Update Berita Lamaran Artis</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; }
         h4 { color: blue; }
@@ -33,10 +33,10 @@
 <body>
     <div id="modalOverlay">
         <div class="modal-box">
-            <h2>Input Berita Lamaran Pernikahan</h2>
+            <h2>Input Data Berita</h2>
             <div class="input-group">
                 <label>Nama Wartawan</label>
-                <input type="text" id="inWartawan" placeholder="Nama Wartawan">
+                <input type="text" id="inWartawan" placeholder="Wawan Irawan">
             </div>
 			<div class="input-group">
                 <label>Nama Pengantin Pria</label>
@@ -66,9 +66,9 @@
         </div>
     </div>
 
-    <h4>Ini berita pertama saya, <span id="inWartawan" class="highlight">wartawan</span></h4>
+    <h4>Ini berita pertama saya, jurnalis <span id="wartawan" class="highlight">Wawan Irawan</span></h4>
     <br>
-    <h3>Informasi Lamaran</h3>
+    <h3>Berita Lamaran Artis</h3>
     <br>
     <p>
         <span id="pria1" class="highlight">ElRumi</span> dan 
@@ -82,7 +82,7 @@
         <span id="ibu" class="highlight">Ibu</span> mendampingi 
         <span id="pria3" class="highlight">ElRumi</span> dalam acara lamaran keluarga ini. 
         Momen lamaran digelar di 
-        <span id="tempat" class="highlight">Hutan Kota Plataran Jakarta Pusat</span>.
+        <span id="tempat" class="highlight">Hutan Kota Plataran Jakarta Pusat</span>
     </p>
 
     <script>
@@ -97,7 +97,7 @@
             const waktu = document.getElementById("inWaktu").value;
 
             // Ganti teks di halaman jika input tidak kosong
-            if(wartawan) document.getElementById("inWartawan").innerText = wartawan;
+            if(wartawan) document.getElementById("wartawan").innerText = wartawan;
 			if(pria) {
                 document.getElementById("pria1").innerText = pria;
                 document.getElementById("pria2").innerText = pria;
